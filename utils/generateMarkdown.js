@@ -58,32 +58,36 @@ function renderLicenseBadge(license) {
 This project is licensed under [${license}](${link}).`
 }
 
-
-
+function renderCredits(collaborators) {
+    
+}
 
 
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown({title, description, usage, tests, author, email, contributedeets, installdeets, badgelink}) {
+function generateMarkdown({title, description, usage, tests, author, email, creditsection, installdeets, contributedeets,  badgelink}) {
   return `# ${title}
 
 ## Description
 ${description}
 
 ## Table of Contents
-* [Installation](#installation)
-* [Usage](#usage)
-* [Credits](#credits)
-* [License](#license)
-* [How To Contribute](#contributing)
-* [Tests](#tests)
-* [Questions](#questions)
+    1. [Installation](#installation)
+    2. [Usage](#usage)
+    3. [Credits](#credits)
+    4. [License](#license)
+    5. [How To Contribute](#contributing)
+    6. [Tests](#tests)
+    7. [Questions](#questions)
 
 ## Installation
 ${installdeets}
 
 ## Usage
 ${usage}
+
+## Credits
+${creditsection}
 
 ## License
 ${badgelink}
@@ -95,7 +99,7 @@ ${contributedeets}
 ${tests}
 
 ## Questions
-If you have any questions about this project, please contact ${author} at ${email}.
+If you have any questions about this project, please contact **${author}** at [${email}](${email}).
 
 `;
 }
@@ -103,7 +107,7 @@ If you have any questions about this project, please contact ${author} at ${emai
 module.exports = {
     installationDetails,
     contributingDetails,
-    // askForCredits,
+    renderCredits,
     renderLicenseBadge,
     generateMarkdown,
 };

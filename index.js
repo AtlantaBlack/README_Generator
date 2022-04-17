@@ -21,7 +21,7 @@ const questions = [
     {
         type: "input",
         name: "title",
-        message: "Enter the title of the project:",
+        message: "What is the Title of the project?",
         validate: (answer) => {
             if (!answer) {
                 return "Please enter the project name.";
@@ -32,7 +32,7 @@ const questions = [
     {
         type: "input",
         name: "description",
-        message: "Enter a short description about the project:",
+        message: "Please write a short Description about the project:",
         validate(answer) {
             if (!answer) {
                 return "Please write a short description about the project.";
@@ -43,13 +43,13 @@ const questions = [
     {
         type: "list",
         name: "installation.confirm",
-        message: "Confirm if project requires extra installation steps to run:",
+        message: "Does the project require any extra Installation steps to run?",
         choices: ["Yes", "No"]
     },
     {
         type: "editor",
         name: "installation.details",
-        message: "Enter the installation requirements of this project:",
+        message: "What are the Installation requirements of this project:",
         validate(answer) {
             if (!answer) {
                 return "Please write about any packages that need to be installed.";
@@ -63,10 +63,10 @@ const questions = [
     {
         type: "input",
         name: "usage",
-        message: "Enter the usage instructions for this project:",
+        message: "Please enter the Usage instructions for this project:",
         validate(answer) {
             if (!answer) {
-                return "Please write about how to use this project.";
+                return "Please enter usage instructions for this project.";
             }
             return true;
         }
@@ -74,19 +74,19 @@ const questions = [
     {
         type: "list",
         name: "license",
-        message: "Please choose a license for this project:",
+        message: "Please choose a License for this project:",
         choices: ["GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "Unlicense"]
     },
     {
         type: "list",
         name: "contributing.confirm",
-        message: "Allow other developers to contribute to the project?",
+        message: "Allow other developers to Contribute to the project?",
         choices: ["Yes", "No"]
     },
     {
         type: "input",
         name: "contributing.details",
-        message: "Enter guidelines for project contribution from other developers:",
+        message: "What are the guidelines for Contribution from other developers:",
         validate(answer) {
             if (!answer) {
                 return "Please write preferred conventions for other contributing developers to follow.";
@@ -100,10 +100,10 @@ const questions = [
     {
         type: "input",
         name: "tests",
-        message: "Enter test instructions for this project:",
+        message: "Please enter Test instructions for this project:",
         validate(answer) {
             if (!answer) {
-                return "Please any test instructions.";
+                return "Please write any test instructions.";
             }
             return true;
         }
@@ -111,7 +111,7 @@ const questions = [
     {
         type: "input",
         name: "author",
-        message: "Enter project author's GitHub username:",
+        message: "Please enter the GitHub username of the Project Author:",
         validate(answer) {
             if (!answer) {
                 return "Please enter a GitHub username.";
@@ -122,7 +122,7 @@ const questions = [
     {
         type: "input",
         name: "email",
-        message: "Enter project author's email address:",
+        message: "Please enter the Email address of the Project Author:",
         validate(answer) {
             if (!answer) {
                 return "Please enter an email address.";
@@ -133,32 +133,27 @@ const questions = [
     {
         type: "input",
         name: "credits",
-        message: "List all collaborators on this project:",
+        message: "Please list all Collaborators for this project (including Project Author):",
         filter(answer) {
             return answer.split(/[ ,]+/).filter(Boolean);
         },
         validate(answer) {
             if (answer.length < 1) {
-                return "Please list at least one contributor.";
+                return "Remember to add the details of the Project Author.";
             }
             return true;
         }
-    },
+    }
 ];
 
-const askUser = () => {
-    return inquirer.prompt(questions);
-}
-
 function askForCredits(credits) {
-    const creditsList = credits;
     const creditQuestions = [];
-    for (let i = 0; i < creditsList.length; i++) {
-        const collaborator = creditsList[i];
+    for (let i = 0; i < credits.length; i++) {
+        const collaborator = credits[i];
         creditQuestions.push(
             {
                 type: "input",
-                name: `collaborator.${collaborator}.url`,
+                name: `${collaborator}.url`,
                 message: `GitHub or website link for ${collaborator}?`
             }
         )
@@ -166,39 +161,47 @@ function askForCredits(credits) {
     return creditQuestions;
 }
 
+const askUser = () => {
+    return inquirer.prompt(questions);
+}
+
 const init = () => {
     askUser()
         .then((answers) => {
             inquirer
                 .prompt(askForCredits(answers.credits))
-                .then((collabAnswers) => {
-                    console.log(JSON.stringify(collabAnswers, null, 2))
+                .then((collaborators) => {
+
+                let installdeets = generate.installationDetails(answers.installation);
+                let contributedeets = generate.contributingDetails(answers.contributing);
+                let badgelink = generate.renderLicenseBadge(answers.license);
+
+                let creditsection = generate.renderCredits(collaborators);
+
+                let modifiedAnswers = { 
+                    ...answers, 
+                    creditsection,
+                    installdeets, 
+                    contributedeets, 
+                    badgelink
+                };
+
+                console.log("modified answers:");
+                console.log(JSON.stringify(modifiedAnswers, null, 4));
+                
+                fs.writeFileSync("userREADME.md", generate.generateMarkdown(modifiedAnswers))
+
                 })
+                .then(() => console.log("Success! Professional README generated!"))
                 .catch((error) => {
                     if (error.isTtyError) {
-                        console.log("oops")
+                        console.log("An error occured.")
                     } else {
                         console.log(error);
                     }
                 })
-
-            console.log(JSON.stringify(answers, null, 2));
-
-
-            let badgelink = generate.renderLicenseBadge(answers.license);
-            let installdeets = generate.installationDetails(answers.installation);
-            let contributedeets = generate.contributingDetails(answers.contributing);
-
-
-
-            let modifiedAnswers = { ...answers, installdeets, contributedeets, badgelink};
-
-            // console.log(JSON.stringify(modifiedAnswers, null, 4));
-            
-            fs.writeFileSync("userREADME.md", generate.generateMarkdown(modifiedAnswers))
         })
-        .then( () => console.log("success") )
-        .catch( (err) => console.log(err) )
+        .catch((err) => console.log(err))
 }
 
 init();

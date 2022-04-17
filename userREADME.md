@@ -1,7 +1,7 @@
-# title
+# Title
 
 ## Description
-proj
+projec des
 
 ## Table of Contents
 * [Installation](#installation)
@@ -13,22 +13,25 @@ proj
 * [Questions](#questions)
 
 ## Installation
-This project does not require any additional installations in order to run.
+kdf
+sldkf
+asdf
+
 
 ## Usage
-sdf
+user
 
 ## License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-This project is licensed under [MIT License](https://opensource.org/licenses/MIT).
+This project is licensed under [Mozilla Public License 2.0](https://opensource.org/licenses/Apache-2.0).
 
 ## How To Contribute
-This project is not allowing outside contributions at this time.
+please
 
 ## Tests
-sdf
+test
 
 ## Questions
-If you have any questions about this project, please contact sf at sdf.
+If you have any questions about this project, please contact **author** at [author.email](author.email).
 
