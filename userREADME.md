@@ -1,7 +1,7 @@
-# title
+# Weather Dashboard
 
 ## Description
-proj
+This application uses the OpenWeather API to retrieve weather details of a user-specified city.
 
 ## Table of Contents
 1. [Installation](#installation)
@@ -16,23 +16,25 @@ proj
 This project does not require any additional installations in order to run.
 
 ## Usage
-Sheksdf
+Open the application using the URL. Enter a city in the text box.
+
+When you hit search, the forecast for that city will appear on screen.
 
 
 ## Credits
-title © 2022 [ab](ab.com), [3](er.com), [sdfs](sr.com).
+Weather Dashboard © 2022 [Sushan Yue](https://github.com/).
 
 ## License
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project is licensed under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0).
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## How To Contribute
 This project is not allowing outside contributions at this time.
 
 ## Tests
-test
+This project does not require additional testing at this time.
 
 ## Questions
-If you have any questions about **title**, please contact aug [by email](mailto:email).
+If you have any questions about **Weather Dashboard**, please contact Sushan Yue [by sending them an email](mailto:author@gmail.com).
 

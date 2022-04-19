@@ -1,4 +1,4 @@
-
+// whether project needs installation steps
 function installationDetails(installation) {
     if (installation.confirm === "No") {
         return "This project does not require any additional installations in order to run.";
@@ -7,6 +7,7 @@ function installationDetails(installation) {
     }
 }
 
+// whether project will allow contributions from outside
 function contributingDetails(contributing) {
     if (contributing.confirm === "No") {
         return "This project is not allowing outside contributions at this time.";
@@ -15,7 +16,7 @@ function contributingDetails(contributing) {
     }
 }
 
-
+// make the license section including badge and link to license
 function renderLicenseBadge(license) {
     let badge; 
     let link; 
@@ -57,34 +58,7 @@ function renderLicenseBadge(license) {
 This project is licensed under the [${license}](${link}).`
 }
 
-function askForCredits(devteam) {
-    let team = parseInt(devteam);
-
-    let members = [];
-    for (let i = 0; i < team; i++) {
-        members.push(i);
-    }
-
-    const creditQuestions = [];
-    for (let j = 0; j < members.length; j++) {
-        let member = j;
-        creditQuestions.push(
-            {
-                type: "input",
-                name: `collaborator.${member}.name`,
-                message: `Name of Collaborator ${member + 1}:`
-            },
-            {
-                type: "input",
-                name: `collaborator.${member}.url`,
-                message: `GitHub/Website URL of Collaborator ${member + 1}:`
-            }
-        ) 
-    }
-    return creditQuestions;
-}
-
-
+// make the credits section
 function renderCredits({collaborator}) {
     let team = [];
     let currentYear = new Date().getFullYear();
@@ -93,7 +67,13 @@ function renderCredits({collaborator}) {
         let name = collaborator[i].name;
         let url = collaborator[i].url;
 
+        // make a clickable link for the team member
         let person = `[${name}](${url})`
+
+        // if no url was entered, leave the link out of the final render
+        if (!url) {
+            person = `${name}`;
+        }
         team.push(person);
     }
 
@@ -106,7 +86,7 @@ function renderCredits({collaborator}) {
 
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown({title, description, usage, tests, author, email, credits, installation, contribution,  badgelink}) {
+function generateMarkdown({title, description, usage, tests, author, email, installation, contributing, badgelink, credits}) {
   return `# ${title}
 
 ## Description
@@ -134,21 +114,21 @@ ${title} ${credits}
 ${badgelink}
 
 ## How To Contribute
-${contribution}
+${contributing}
 
 ## Tests
 ${tests}
 
 ## Questions
-If you have any questions about **${title}**, please contact ${author} [by email](mailto:${email}).
+If you have any questions about **${title}**, please contact ${author} [by sending them an email](mailto:${email}).
 
 `;
 }
 
+
 module.exports = {
     installationDetails,
     contributingDetails,
-    askForCredits,
     renderCredits,
     renderLicenseBadge,
     generateMarkdown,

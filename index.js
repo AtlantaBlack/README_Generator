@@ -1,8 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-
-const generate = require("./utils/generateMarkdown");
+const gen = require("./utils/generateMarkdown");
 
 const questions = [
     {
@@ -98,10 +97,10 @@ const questions = [
     {
         type: "input",
         name: "author",
-        message: "GitHub username of the Project Author:",
+        message: "Name of the Project Author:",
         validate(answer) {
             if (!answer) {
-                return "Please enter a GitHub username.";
+                return "Please enter a name or GitHub username.";
             }
             return true;
         }
@@ -111,13 +110,16 @@ const questions = [
         name: "email",
         message: "Email contact of the Project Author:",
         validate(answer) {
-            if (!answer) {
-                return "Please enter an email address.";
+            // using regex to validate an email (include @ and .)
+            // https://stackoverflow.com/questions/940577/javascript-regular-expression-email-validation
+            const regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+            if (regexEmail.test(answer)) {
+                return true;
+            } else {
+                return "Please enter a valid email address.";
             }
-            return true;
         }
     },
-
     {
         type: "input",
         name: "devteam",
@@ -136,38 +138,80 @@ const askUser = () => {
     return inquirer.prompt(questions);
 }
 
+// follow up questions for the project collaborators
+function askForCredits(devteam) {
+    let team = parseInt(devteam);
 
-const init = () => {
-    askUser()
+    // create array for each team member
+    let members = [];
+    for (let i = 0; i < team; i++) {
+        members.push(i);
+    }
+
+    // create array of follow-up questions to ask
+    const creditQuestions = [];
+    for (let j = 0; j < members.length; j++) {
+        let member = j;
+        creditQuestions.push(
+            { // ask the developer's name
+                type: "input",
+                name: `collaborator.${member}.name`,
+                message: `Name of Collaborator ${member + 1}:`,
+                validate: (answer) => {
+                    if (!answer) {
+                        return "Please enter the developer's name.";
+                    }
+                    return true;
+                }
+            },
+            { // ask the github url of the developer
+                type: "input",
+                name: `collaborator.${member}.url`,
+                message: `GitHub/Website URL of Collaborator ${member + 1}:`
+            }
+        ) 
+    }
+    return creditQuestions;
+}
+
+
+function init() {
+    // welcome message uses magenta colour [35m
+    console.log("\x1b[35m Welcome to the Good README Generator. Let's get started! \x1b[0m");
+    askUser() // ask the main questions
         .then((answers) => {
-            inquirer
-                .prompt(generate.askForCredits(answers.devteam))
+            inquirer // ask the follow-up questions for credits section
+                .prompt(askForCredits(answers.devteam))
                 .then((creditAnswers) => {
 
-                let installation = generate.installationDetails(answers.installation);
-                let contribution = generate.contributingDetails(answers.contributing);
-                let badgelink = generate.renderLicenseBadge(answers.license);
+                // get updated values for the following details
+                let installation = gen.installationDetails(answers.installation);
+                let contributing = gen.contributingDetails(answers.contributing);
+                let badgelink = gen.renderLicenseBadge(answers.license);
+                let credits = gen.renderCredits(creditAnswers);
 
-                let credits = generate.renderCredits(creditAnswers);
-
+                // make new user data with the updated info
                 let userdata = { 
-                    ...answers, 
-                    credits,
-                    installation, 
-                    contribution, 
-                    badgelink
+                    ...answers, // include the original answer values
+                    installation,
+                    contributing,
+                    badgelink,
+                    credits
                 };
 
-                console.log("user data:");
-                console.log(JSON.stringify(userdata, null, 4));
+                // console.log("user data:");
+                // console.log(JSON.stringify(userdata, null, 4));
                 
-                fs.writeFileSync("userREADME.md", generate.generateMarkdown(userdata))
-
+                // write file using new user data
+                fs.writeFileSync("userREADME.md", gen.generateMarkdown(userdata))
                 })
-                .then(() => console.log("Success! Professional README generated!"))
+                .then(() => 
+                    // message uses magenta and cyan
+                    console.log("\x1b[35m Success! \x1b[36m Project README generated! \x1b[0m"))
                 .catch((error) => {
                     if (error.isTtyError) {
-                        console.log("An error occured.")
+                        // error message to display in red
+                        console.log("\x1b[31m An error occured. \x1b[0m")
                     } else {
                         console.log(error);
                     }
@@ -176,4 +220,5 @@ const init = () => {
         .catch((err) => console.log(err))
 }
 
+// start the app
 init();
