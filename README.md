@@ -54,9 +54,37 @@ Once all the questions have been answered, a userREADME.md file will be created 
 
 ## Demo
 
+**[Video to view README Generator being used in Terminal](https://drive.google.com/file/d/1dYJu7I1vBQFckDE7L4uLhUUAB7lYK4_d/view)**
 
+Below: Gif of the above video (README Generator being used in Terminal)
+
+![Demo of README Generator: Terminal](assets/images/demo-readme-generator-terminal.gif?raw=true "README Generator demo")
+
+**[Video of README Generator being used in VSC's Integrated Terminal](https://drive.google.com/file/d/1orE49koff4Hhyg1OelFKoIwZLl_FGDz0/view)**
+
+Below: Gif of the above video (VSC Terminal version)
+
+![Demo of README Generator: VSC](assets/images/demo-readme-generator-VSC.gif?raw=true "README Generator demo")
 
 ## Screenshots
+
+**README Generator in Terminal:**
+
+![Screenshot of README Generator: Terminal](assets/images/screenshot-readme-generator-terminal.jpg?raw=true "README Generator in Terminal")
+
+---
+
+**Sample of README file in Visual Studio Code:**
+
+![Screenshot of README Generator: Terminal](assets/images/screenshot-readme-sample-VSC.jpg?raw=true "README sample file in VSC")
+
+---
+
+**Sample of README file in Preview:**
+
+![Screenshot of README Generator: Terminal](assets/images/screenshot-readme-sample-MD.jpg?raw=true "README sample file in Preview")
+
+---
 
 ## License
 
