@@ -130,47 +130,114 @@ const questions = [
             return true;
         }
     },
+
     {
         type: "input",
         name: "credits",
-        message: "Please list all Collaborators for this project (including Project Author):",
-        filter(answer) {
-            // regex: split the answer by every comma AND whitespace
-            // return answer.split(/[, ]+/).filter(Boolean);
-
-            // regex: split the answer by comma that ignores all the whitespaces around the comma
-            // .filter(Boolean) to ignore any empty strings
-            return answer.split(/\s*,\s*/).filter(Boolean);
-        },
+        message: "How many people worked on this project?",
         validate(answer) {
-            if (answer.length < 1) {
-                return "Remember to add the details of the Project Author.";
+            if (isNaN(answer)) {
+                return "please enter a number.";
             }
             return true;
         }
     }
+
+    
+    // {
+    //     type: "input",
+    //     name: "credits",
+    //     message: "Please list all Collaborators for this project (including Project Author):",
+    //     filter(answer) {
+    //         // regex: split the answer by every comma AND whitespace
+    //         // return answer.split(/[, ]+/).filter(Boolean);
+
+    //         // regex: split the answer by comma that ignores all the whitespaces around the comma
+    //         // .filter(Boolean) to ignore any empty strings
+    //         return answer.split(/\s*,\s*/).filter(Boolean);
+    //     },
+    //     validate(answer) {
+    //         if (answer.length < 1) {
+    //             return "Remember to add the details of the Project Author.";
+    //         }
+    //         return true;
+    //     }
+    // }
 ];
 
+
 function askForCredits(credits) {
+    let team = parseInt(credits);
+    console.log(team);
+
+    let members = [];
+    for (let i = 0; i < team; i++) {
+        members.push(i);
+    }
+
+    console.log("members");
+    console.log(members);
+
     const creditQuestions = [];
-    for (let i = 0; i < credits.length; i++) {
-        const collaborator = credits[i];
+
+    for (let j = 0; j < members.length; j++) {
+        let member = j;
         creditQuestions.push(
             {
                 type: "input",
-                name: `${collaborator}.url`,
-                message: `GitHub or website link for ${collaborator}?`,
-                validate(answer) {
-                    if (!answer) {
-                        return "Please enter a valid url.";
-                    }
-                    return true;
-                }
+                name: `collaborator.${member}.name`,
+                message: `Name of collaborator ${member + 1}:`
+            },
+            {
+                type: "input",
+                name: `collaborator.${member}.url`,
+                message: `GitHub of collaborator ${member + 1}:`
             }
-        )
+        ) 
     }
+
     return creditQuestions;
+
+    // const creditQuestions = [];
+
+    // for (let i = 0; i < team; i++) {
+    //     let member = i + 1;
+    //     creditQuestions.push(
+    //         {
+    //             type: "input",
+    //             name: "collaborator",
+    //             message: `Name of collaborator ${member}:`
+    //         },
+    //         {
+    //             type: "input",
+    //             name: "url",
+    //             message: `GitHub of collaborator ${member}:`
+    //         }
+    //     ) 
+    // }
+    // return creditQuestions;
 }
+
+// function askForCredits(credits) {
+//     const creditQuestions = [];
+//     for (let i = 0; i < credits.length; i++) {
+//         const collaborator = credits[i];
+//         creditQuestions.push(
+//             {
+//                 type: "input",
+//                 name: `${collaborator}.url`,
+//                 message: `GitHub or website link for ${collaborator}?`,
+//                 validate(answer) {
+//                     if (!answer) {
+//                         return "Please enter a valid url.";
+//                     }
+//                     return true;
+//                 }
+//             }
+//         )
+//     }
+//     return creditQuestions;
+// }
 
 const askUser = () => {
     return inquirer.prompt(questions);

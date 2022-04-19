@@ -1,7 +1,7 @@
 # title
 
 ## Description
-desc
+proj
 
 ## Table of Contents
     1. [Installation](#installation)
@@ -22,9 +22,9 @@ use
 [object Object]
 
 ## License
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project is licensed under [Apache License 2.0](https://opensource.org/licenses/Apache-2.0).
+This project is licensed under [MIT License](https://opensource.org/licenses/MIT).
 
 ## How To Contribute
 This project is not allowing outside contributions at this time.
