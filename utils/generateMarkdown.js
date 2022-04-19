@@ -15,8 +15,7 @@ function contributingDetails(contributing) {
     }
 }
 
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+
 function renderLicenseBadge(license) {
     let badge; 
     let link; 
@@ -34,7 +33,7 @@ function renderLicenseBadge(license) {
             badge = "![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)";
             link = "https://opensource.org/licenses/MPL-2.0";
         case "Apache License 2.0":
-            badge = "![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)";
+            badge = "![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)";
             link = "https://opensource.org/licenses/Apache-2.0";
             break;
         case "MIT License":
@@ -42,7 +41,7 @@ function renderLicenseBadge(license) {
             link = "https://opensource.org/licenses/MIT";
             break;
         case "Boost Software License 1.0":
-            badge = "![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)";
+            badge = "![License: BSL 1.0](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)";
             link = "https://www.boost.org/LICENSE_1_0.txt";
             break;
         case "Unlicense":
@@ -55,51 +54,93 @@ function renderLicenseBadge(license) {
 
     return `[${badge}](${link})
 
-This project is licensed under [${license}](${link}).`
+This project is licensed under the [${license}](${link}).`
 }
 
-function renderCredits(collaborators) {
-    return collaborators;
+function askForCredits(devteam) {
+    let team = parseInt(devteam);
+
+    let members = [];
+    for (let i = 0; i < team; i++) {
+        members.push(i);
+    }
+
+    const creditQuestions = [];
+    for (let j = 0; j < members.length; j++) {
+        let member = j;
+        creditQuestions.push(
+            {
+                type: "input",
+                name: `collaborator.${member}.name`,
+                message: `Name of Collaborator ${member + 1}:`
+            },
+            {
+                type: "input",
+                name: `collaborator.${member}.url`,
+                message: `GitHub/Website URL of Collaborator ${member + 1}:`
+            }
+        ) 
+    }
+    return creditQuestions;
 }
 
+
+function renderCredits({collaborator}) {
+    let team = [];
+    let currentYear = new Date().getFullYear();
+
+    for (let i = 0; i < collaborator.length; i++) {
+        let name = collaborator[i].name;
+        let url = collaborator[i].url;
+
+        let person = `[${name}](${url})`
+        team.push(person);
+    }
+
+    if (team.length === 1) {
+        return `\u00A9 ${currentYear} ${team}.`;
+    } else {
+        return `\u00A9 ${currentYear} ${team.join(", ")}.`;
+    }
+}
 
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown({title, description, usage, tests, author, email, creditsection, installdeets, contributedeets,  badgelink}) {
+function generateMarkdown({title, description, usage, tests, author, email, credits, installation, contribution,  badgelink}) {
   return `# ${title}
 
 ## Description
 ${description}
 
 ## Table of Contents
-    1. [Installation](#installation)
-    2. [Usage](#usage)
-    3. [Credits](#credits)
-    4. [License](#license)
-    5. [How To Contribute](#contributing)
-    6. [Tests](#tests)
-    7. [Questions](#questions)
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Credits](#credits)
+4. [License](#license)
+5. [How To Contribute](#contributing)
+6. [Tests](#tests)
+7. [Questions](#questions)
 
 ## Installation
-${installdeets}
+${installation}
 
 ## Usage
 ${usage}
 
 ## Credits
-${creditsection}
+${title} ${credits}
 
 ## License
 ${badgelink}
 
 ## How To Contribute
-${contributedeets}
+${contribution}
 
 ## Tests
 ${tests}
 
 ## Questions
-If you have any questions about this project, please contact **${author}** at [${email}](${email}).
+If you have any questions about **${title}**, please contact ${author} [by email](mailto:${email}).
 
 `;
 }
@@ -107,6 +148,7 @@ If you have any questions about this project, please contact **${author}** at [$
 module.exports = {
     installationDetails,
     contributingDetails,
+    askForCredits,
     renderCredits,
     renderLicenseBadge,
     generateMarkdown,
