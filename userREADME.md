@@ -1,37 +1,37 @@
-# Title
+# title
 
 ## Description
-projec des
+desc
 
 ## Table of Contents
-* [Installation](#installation)
-* [Usage](#usage)
-* [Credits](#credits)
-* [License](#license)
-* [How To Contribute](#contributing)
-* [Tests](#tests)
-* [Questions](#questions)
+    1. [Installation](#installation)
+    2. [Usage](#usage)
+    3. [Credits](#credits)
+    4. [License](#license)
+    5. [How To Contribute](#contributing)
+    6. [Tests](#tests)
+    7. [Questions](#questions)
 
 ## Installation
-kdf
-sldkf
-asdf
-
+This project does not require any additional installations in order to run.
 
 ## Usage
-user
+use
+
+## Credits
+[object Object]
 
 ## License
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-This project is licensed under [Mozilla Public License 2.0](https://opensource.org/licenses/Apache-2.0).
+This project is licensed under [Apache License 2.0](https://opensource.org/licenses/Apache-2.0).
 
 ## How To Contribute
-please
+This project is not allowing outside contributions at this time.
 
 ## Tests
 test
 
 ## Questions
-If you have any questions about this project, please contact **author** at [author.email](author.email).
+If you have any questions about this project, please contact **auth** at [email](email).
 

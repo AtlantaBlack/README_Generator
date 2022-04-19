@@ -59,7 +59,7 @@ This project is licensed under [${license}](${link}).`
 }
 
 function renderCredits(collaborators) {
-    
+    return collaborators;
 }
 
 

@@ -135,7 +135,12 @@ const questions = [
         name: "credits",
         message: "Please list all Collaborators for this project (including Project Author):",
         filter(answer) {
-            return answer.split(/[ ,]+/).filter(Boolean);
+            // regex: split the answer by every comma AND whitespace
+            // return answer.split(/[, ]+/).filter(Boolean);
+
+            // regex: split the answer by comma that ignores all the whitespaces around the comma
+            // .filter(Boolean) to ignore any empty strings
+            return answer.split(/\s*,\s*/).filter(Boolean);
         },
         validate(answer) {
             if (answer.length < 1) {
@@ -154,7 +159,13 @@ function askForCredits(credits) {
             {
                 type: "input",
                 name: `${collaborator}.url`,
-                message: `GitHub or website link for ${collaborator}?`
+                message: `GitHub or website link for ${collaborator}?`,
+                validate(answer) {
+                    if (!answer) {
+                        return "Please enter a valid url.";
+                    }
+                    return true;
+                }
             }
         )
     }
