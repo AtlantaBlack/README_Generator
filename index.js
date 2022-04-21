@@ -177,7 +177,7 @@ function askForCredits(devteam) {
 
 function init() {
     // welcome message uses magenta colour [35m
-    console.log("\x1b[35m Welcome to the Good README Generator. Let's get started! \x1b[0m");
+    console.log("\x1b[35m Welcome to the Good README Generator. Let's get started! \x1b[30m");
     askUser() // ask the main questions
         .then((answers) => {
             inquirer // ask the follow-up questions for credits section
@@ -207,11 +207,11 @@ function init() {
                 })
                 .then(() => 
                     // message uses magenta and cyan
-                    console.log("\x1b[35m Success! \x1b[36m Project README generated! \x1b[0m"))
+                    console.log("\x1b[35m Success! \x1b[36m Project README generated! \x1b[30m"))
                 .catch((error) => {
                     if (error.isTtyError) {
                         // error message to display in red
-                        console.log("\x1b[31m An error occured. \x1b[0m")
+                        console.log("\x1b[31m An error occured. \x1b[30m")
                     } else {
                         console.log(error);
                     }
