@@ -94,8 +94,29 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 ## Resources
 
+* [Professional README Guide](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
+
 * [npm Inquirer Docs](https://www.npmjs.com/package/inquirer#documentation)
 
+* [Digital Ocean - How To Create Interactive Command-line Prompts with Inquirer.js](https://www.digitalocean.com/community/tutorials/nodejs-interactive-command-line-prompts)
+
+* [Pakstech - Use Inquirer.js to Create a Conversational CLI User Interface](https://pakstech.com/blog/inquirer-js/)
+
+* [Stack Overflow - Validating number inputs](https://stackoverflow.com/questions/62798907/how-to-clear-wrong-input-in-inquirer-js)
+
+* [Stack Overflow - Email Address verification using RegEx](https://stackoverflow.com/questions/940577/javascript-regular-expression-email-validation)
+
+* [MDN Web Docs - RegEx Cheatsheet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet)
+
+* [Split a String by Space or Comma using JavaScript](https://bobbyhadz.com/blog/javascript-split-by-space-or-comma)
+
+* [LogRocket - Using console colours with Node.js](https://blog.logrocket.com/using-console-colors-node-js/)
+
+* [Wikipedia - ANSI escape code - colours](https://en.m.wikipedia.org/wiki/ANSI_escape_code#Colors)
+
+* [Shields.io - Badges](https://shields.io/)
+
+* [GitHub Lukas-H - Markdown License badges](https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba)
 
 ## Contact
 [Sushan Yue @ GitHub](https://github.com/AtlantaBlack)
