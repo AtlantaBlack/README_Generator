@@ -54,27 +54,29 @@ Once all the questions have been answered, a userREADME.md file will be created 
 
 ## Demo
 
-**[Video to view README Generator being used in Terminal](https://drive.google.com/file/d/1TF3fSGcck-lrHgQIgh7ge7zTDoMWcpag/view)**
+**[Link to Video showing README Generator being used in Terminal](https://drive.google.com/file/d/1TF3fSGcck-lrHgQIgh7ge7zTDoMWcpag/view)**
 
-Below: Gif of the above video (README Generator being used in Terminal)
+[Click here to view sample README file that was generated from the video](HW09_README_Generator/userREADME.md)
+
+Below: Gif of video showing README Generator being used in Terminal
 
 ![Demo of README Generator: Terminal](assets/images/demo-readme-generator-in-terminal.gif?raw=true "README Generator demo")
 
 ## Screenshots
 
-**README Generator in Terminal:**
+This is the application **README Generator** as viewed in **Terminal**:
 
 ![Screenshot of README Generator: Terminal](assets/images/screenshot-readme-generator-terminal.jpg?raw=true "README Generator in Terminal")
 
 ---
 
-**Sample of README file in Visual Studio Code:**
+This is the **Sample README file** as viewed in **Visual Studio Code**:
 
 ![Screenshot of README Generator: Terminal](assets/images/screenshot-readme-sample-VSC.jpg?raw=true "README sample file in VSC")
 
 ---
 
-**Sample of README file in Preview:**
+This is the **Sample README file** as viewed in **Preview**:
 
 ![Screenshot of README Generator: Terminal](assets/images/screenshot-readme-sample-MD.jpg?raw=true "README sample file in Preview")
 
