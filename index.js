@@ -110,8 +110,8 @@ const questions = [
         name: "email",
         message: "Email contact of the Project Author:",
         validate(answer) {
-            // using regex to validate an email (include @ and .)
-            // https://stackoverflow.com/questions/940577/javascript-regular-expression-email-validation
+            /* using regex to validate an email (include @ and .) by M.R.Safari & Mohamad Shiralizadeh:
+            https://stackoverflow.com/questions/940577/javascript-regular-expression-email-validation */
             const regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
             if (regexEmail.test(answer)) {
                 return true;
@@ -133,30 +133,33 @@ const questions = [
     }
 ];
 
-
-const askUser = () => {
+// ask the main questions
+const askQuestions = () => {
     return inquirer.prompt(questions);
 }
 
-// follow up questions for the project collaborators
-function askForCredits(devteam) {
-    let team = parseInt(devteam);
+// ask the follow-up questions for credits section
+const askForCredits = (answers) => {
+    return inquirer.prompt(creditDetails(answers.devteam));
+}
 
-    // create array for each team member
-    let members = [];
+// make the follow up questions for the project collaborators
+const creditDetails = (devteam) => {
+    let team = parseInt(devteam); // make the number input a number
+
+    let members = []; // create array for each team member
     for (let i = 0; i < team; i++) {
         members.push(i);
     }
 
-    // create array of follow-up questions to ask
-    const creditQuestions = [];
+    const creditQuestions = []; // create array of follow-up questions to ask
     for (let j = 0; j < members.length; j++) {
         let member = j;
-        creditQuestions.push(
+        creditQuestions.push( // add to the credit questions array with following Qs:
             { // ask the developer's name
                 type: "input",
-                name: `collaborator.${member}.name`,
-                message: `Name of Collaborator ${member + 1}:`,
+                name: `developer.${member}.name`,
+                message: `Name of Developer ${member + 1}:`,
                 validate: (answer) => {
                     if (!answer) {
                         return "Please enter the developer's name.";
@@ -166,48 +169,53 @@ function askForCredits(devteam) {
             },
             { // ask the github url of the developer
                 type: "input",
-                name: `collaborator.${member}.url`,
-                message: `GitHub/Website URL of Collaborator ${member + 1}:`
+                name: `developer.${member}.url`,
+                message: `GitHub/Website URL of Developer ${member + 1}:`,
+                validate: (answer) => {
+                    if (answer) {
+                        /* regex validation by Nodarii & Ani Naslyan copied from following stack overflow: 
+                            https://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url
+                        regex explanation: https://regex101.com/r/KR2b6n/1 */
+                        const regexUrl = /^(http(s)?:\/\/)?(www.)?([a-zA-Z0-9])+([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,5}(:[0-9]{1,5})?(\/[^\s]*)?$/gm;
+                        if (regexUrl.test(answer)) {
+                            return true;
+                        } else {
+                            return "Please enter a valid url.";
+                        }
+                    }
+                    return true;
+                }
             }
         ) 
     }
     return creditQuestions;
 }
+    
+// write file using compiled user data
+const writeToFile = (userdata) => {
+    fs.writeFileSync("userREADME.md", gen.generateMarkdown(userdata));
+}
 
+// message when starting the app
+const welcomeMessage = () => {
+    // welcome message uses magenta colour [35m for welcome text; return text to black after [30m
+    return console.log("\x1b[35m Welcome to the Good README Generator. Let's get started! \x1b[30m");
+}
 
-function init() {
-    // welcome message uses magenta colour [35m
-    console.log("\x1b[35m Welcome to the Good README Generator. Let's get started! \x1b[30m");
-    askUser() // ask the main questions
-        .then((answers) => {
-            inquirer // ask the follow-up questions for credits section
-                .prompt(askForCredits(answers.devteam))
+const readmeGenerator = () => {
+    askQuestions() // ask the main questions
+        .then((answers) => { // with the answers:
+            askForCredits(answers) // ask follow-up questions for credit section
                 .then((creditAnswers) => {
-
-                // get updated values for the following details
-                let installation = gen.installationDetails(answers.installation);
-                let contributing = gen.contributingDetails(answers.contributing);
-                let badgelink = gen.renderLicenseBadge(answers.license);
-                let credits = gen.renderCredits(creditAnswers);
-
-                // make new user data with the updated info
-                let userdata = { 
-                    ...answers, // include the original answer values
-                    installation,
-                    contributing,
-                    badgelink,
-                    credits
-                };
-
-                // console.log("user data:");
-                // console.log(JSON.stringify(userdata, null, 4));
-                
-                // write file using new user data
-                fs.writeFileSync("userREADME.md", gen.generateMarkdown(userdata))
+                    let credits = gen.renderCredits(creditAnswers);
+                    let userdata = { // make new user data with the updated info
+                        ...answers, // include the original answer values
+                        credits // include credits
+                    };
+                    writeToFile(userdata); // write to the file
                 })
-                .then(() => 
-                    // message uses magenta and cyan
-                    console.log("\x1b[35m Success! \x1b[36m Project README generated! \x1b[30m"))
+                // success message uses magenta
+                .then(() => console.log("\x1b[35m Success! Project README generated! \x1b[30m"))
                 .catch((error) => {
                     if (error.isTtyError) {
                         // error message to display in red
@@ -215,9 +223,15 @@ function init() {
                     } else {
                         console.log(error);
                     }
-                })
+                });
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
+}
+
+// initialise the app
+const init = () => {
+    welcomeMessage();
+    readmeGenerator();
 }
 
 // start the app

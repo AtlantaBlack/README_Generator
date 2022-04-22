@@ -7,7 +7,7 @@ This application is activated from the command line using Node.js and the npm In
 
 ## Table of Contents
 
-1. [Technologies Used](#technologies)
+1. [Technologies Used](#technologies-used)
 2. [Installation](#installation)
 3. [Usage](#usage)
 4. [Demo](#demo)
@@ -104,7 +104,9 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 * [Stack Overflow - Validating number inputs](https://stackoverflow.com/questions/62798907/how-to-clear-wrong-input-in-inquirer-js)
 
-* [Stack Overflow - Email Address verification using RegEx](https://stackoverflow.com/questions/940577/javascript-regular-expression-email-validation)
+* [Stack Overflow - Email Address verification using RegEx (M.R.Safari & Mohamad Shiralizadeh)](https://stackoverflow.com/questions/940577/javascript-regular-expression-email-validation)
+
+* [Stack Overflow - Website URL verification using RegEx (Nodarii & Ani Naslyan)](https://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url)
 
 * [MDN Web Docs - RegEx Cheatsheet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet)
 
@@ -112,7 +114,7 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 * [LogRocket - Using console colours with Node.js](https://blog.logrocket.com/using-console-colors-node-js/)
 
-* [Wikipedia - ANSI escape code - colours](https://en.m.wikipedia.org/wiki/ANSI_escape_code#Colors)
+* [ANSI escape code - colours](https://en.m.wikipedia.org/wiki/ANSI_escape_code#Colors)
 
 * [Shields.io - Badges](https://shields.io/)
 

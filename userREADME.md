@@ -1,40 +1,37 @@
-# Weather Dashboard
+# title
+
+[![License: BSL 1.0](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)
 
 ## Description
-This application uses the OpenWeather API to retrieve weather details of a user-specified city.
+proj
 
 ## Table of Contents
 1. [Installation](#installation)
 2. [Usage](#usage)
-3. [Credits](#credits)
-4. [License](#license)
-5. [How To Contribute](#contributing)
-6. [Tests](#tests)
-7. [Questions](#questions)
+3. [License](#license)
+4. [How To Contribute](#how-to-contribute)
+5. [Tests](#tests)
+6. [Questions](#questions)
 
 ## Installation
-This project does not require any additional installations in order to run.
+Installation
+
 
 ## Usage
-Open the application using the URL. Enter a city in the text box.
+Usage
 
-When you hit search, the forecast for that city will appear on screen.
-
-
-## Credits
-Weather Dashboard © 2022 [Sushan Yue](https://github.com/).
 
 ## License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+title © 2022 [dev1](dev.com), dev2, [dev3](exit.com).
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+This project is licensed under the [Boost Software License 1.0](https://www.boost.org/LICENSE_1_0.txt).
 
 ## How To Contribute
 This project is not allowing outside contributions at this time.
 
 ## Tests
-This project does not require additional testing at this time.
+test
 
 ## Questions
-If you have any questions about **Weather Dashboard**, please contact Sushan Yue [by sending them an email](mailto:author@gmail.com).
+If you have any questions about title, please contact **auth** [by sending them an email](mailto:auth@email.com).
 
