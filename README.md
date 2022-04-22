@@ -54,17 +54,11 @@ Once all the questions have been answered, a userREADME.md file will be created 
 
 ## Demo
 
-**[Video to view README Generator being used in Terminal](https://drive.google.com/file/d/1dYJu7I1vBQFckDE7L4uLhUUAB7lYK4_d/view)**
+**[Video to view README Generator being used in Terminal](https://drive.google.com/file/d/1TF3fSGcck-lrHgQIgh7ge7zTDoMWcpag/view)**
 
 Below: Gif of the above video (README Generator being used in Terminal)
 
-![Demo of README Generator: Terminal](assets/images/demo-readme-generator-terminal.gif?raw=true "README Generator demo")
-
-**[Video of README Generator being used in VSC's Integrated Terminal](https://drive.google.com/file/d/1orE49koff4Hhyg1OelFKoIwZLl_FGDz0/view)**
-
-Below: Gif of the above video (VSC Terminal version)
-
-![Demo of README Generator: VSC](assets/images/demo-readme-generator-VSC.gif?raw=true "README Generator demo")
+![Demo of README Generator: Terminal](assets/images/demo-readme-generator-in-terminal.gif?raw=true "README Generator demo")
 
 ## Screenshots
 

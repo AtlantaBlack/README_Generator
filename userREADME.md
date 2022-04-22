@@ -1,9 +1,9 @@
-# title
+# SAMPLE: The Good README Generator
 
-[![License: BSL 1.0](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-proj
+This application creates a README file based off the user's inputs.
 
 ## Table of Contents
 1. [Installation](#installation)
@@ -14,24 +14,26 @@ proj
 6. [Questions](#questions)
 
 ## Installation
-Installation
+This application uses Node.js and requires the npm Inquirer package to be installed.
 
 
 ## Usage
-Usage
+Using the command line, navigate to the root directory of the generator folder.
+
+Type 'node index.js' to start the application.
 
 
 ## License
-title © 2022 [dev1](dev.com), dev2, [dev3](exit.com).
+SAMPLE: The Good README Generator © 2022 [Sushan Yue](github.com), Amy Winehouse, [Barry Oldman](barry.com).
 
-This project is licensed under the [Boost Software License 1.0](https://www.boost.org/LICENSE_1_0.txt).
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## How To Contribute
 This project is not allowing outside contributions at this time.
 
 ## Tests
-test
+No testing required
 
 ## Questions
-If you have any questions about title, please contact **auth** [by sending them an email](mailto:auth@email.com).
+If you have any questions about SAMPLE: The Good README Generator, please contact **Sushan Yue** [by sending them an email](mailto:author@email.com).
 
