@@ -56,7 +56,7 @@ Once all the questions have been answered, a userREADME.md file will be created 
 
 **[Link to Video showing README Generator being used in Terminal](https://drive.google.com/file/d/1TF3fSGcck-lrHgQIgh7ge7zTDoMWcpag/view)**
 
-[Click here to view sample README file that was generated from the video](HW09_README_Generator/userREADME.md)
+[Click here to view sample README file that was generated from the video](https://github.com/AtlantaBlack/README_Generator/blob/main/userREADME.md)
 
 Below: Gif of video showing README Generator being used in Terminal
 
